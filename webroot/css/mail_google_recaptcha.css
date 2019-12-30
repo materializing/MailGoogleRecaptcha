@@ -1,0 +1,24 @@
+@charset "utf-8";
+/**
+ * [ADMIN] MailGoogleRecaptcha
+ */
+/* reCAPTCHAバッジの表示指定
+-------------------------------- */
+.grecaptcha-badge { visibility: hidden; }
+
+/* reCAPTCHAブランドを表示するテキストスタイル
+-------------------------------- */
+.mail-google-recaptcha-text {
+	background-color: #F7F7F7;
+	padding-top: 1em;
+	padding-right: 1.5em;
+	padding-bottom: 1em;
+	padding-left: 1.5em;
+	text-align: center;
+}
+.mail-google-recaptcha-text p {
+	color: #ADADAD;
+	font-size: small;
+	margin: 0;
+	padding: 0;
+}
