@@ -15,10 +15,10 @@ class MailGoogleRecaptchaHelperEventListener extends BcHelperEventListener {
 	 *
 	 * @var array
 	 */
-	public $events = array(
+	public $events = [
 		'Form.afterCreate',
 		'Form.beforeEnd',
-	);
+	];
 
 	/**
 	 * formAfterCreate

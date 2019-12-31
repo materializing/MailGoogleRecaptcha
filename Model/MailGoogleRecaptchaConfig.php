@@ -19,19 +19,19 @@ class MailGoogleRecaptchaConfig extends AppModel {
 	 *
 	 * @var array
 	 */
-	public $validate = array(
-		'site_key' => array(
-			'notBlank' => array(
-				'rule' => array('notBlank'),
+	public $validate = [
+		'site_key' => [
+			'notBlank' => [
+				'rule' => ['notBlank'],
 				'message' => '必須入力です。',
-			),
-		),
-		'secret_key' => array(
-			'notBlank' => array(
-				'rule' => array('notBlank'),
+			],
+		],
+		'secret_key' => [
+			'notBlank' => [
+				'rule' => ['notBlank'],
 				'message' => '必須入力です。',
-			),
-		),
-	);
+			],
+		],
+	];
 
 }

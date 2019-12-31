@@ -11,30 +11,30 @@ App::uses('MailGoogleRecaptchaUtil', 'MailGoogleRecaptcha.Lib');
 /**
  * システムナビ
  */
-// $config['BcApp.adminNavi.mail_google_recaptcha'] = array(
+// $config['BcApp.adminNavi.mail_google_recaptcha'] = [
 // 	'name' => 'メールGoogleRecaptcha プラグイン',
-// 	'contents' => array(
-// 		array('name' => '利用設定',
-// 			'url' => array(
-// 				'admin' => true,
-// 				'plugin' => 'mail_google_recaptcha',
-// 				'controller' => 'mail_google_recaptcha_configs',
-// 				'action' => 'index'),
-// 		),
-// 	),
-// );
+// 	'contents' => [[
+// 		'name' => '利用設定',
+// 		'url' => [
+// 			'admin' => true,
+// 			'plugin' => 'mail_google_recaptcha',
+// 			'controller' => 'mail_google_recaptcha_configs',
+// 			'action' => 'index',
+// 			],
+// 	]],
+// ];
 
 /**
  * 専用ログ
  */
 define('LOG_MAIL_GOOGLE_RECAPTCHA', 'log_mail_google_recaptcha');
-CakeLog::config('log_mail_google_recaptcha', array(
+CakeLog::config('log_mail_google_recaptcha', [
 	'engine' => 'FileLog',
-	'types' => array('log_mail_google_recaptcha'),
+	'types' => ['log_mail_google_recaptcha'],
 	'file' => 'log_mail_google_recaptcha',
 	'size' => '3MB',
 	'rotate' => 5,
-));
+]);
 
 /**
  * config

@@ -14,31 +14,31 @@ class MailGoogleRecaptchaConfigsController extends AppController {
 	 *
 	 * @var array
 	 */
-	public $uses = array('SiteConfig');
+	public $uses = ['SiteConfig'];
 
 	/**
 	 * コンポーネント
 	 *
 	 * @var array
 	 */
-	public $components = array('BcAuth', 'Cookie', 'BcAuthConfigure');
+	public $components = ['BcAuth', 'Cookie', 'BcAuthConfigure'];
 
 	/**
 	 * サブメニューエレメント
 	 *
 	 * @var array
 	 */
-	public $subMenuElements = array('mail_google_recaptcha');
+	public $subMenuElements = ['mail_google_recaptcha'];
 
 	/**
 	 * ぱんくずナビ
 	 *
 	 * @var string
 	 */
-	public $crumbs = array(
-		array('name' => 'プラグイン管理', 'url' => array('plugin' => '', 'controller' => 'plugins', 'action' => 'index')),
-		array('name' => 'メールGoogleRecaptcha', 'url' => array('plugin' => 'mail_google_recaptcha', 'controller' => 'mail_google_recaptcha_configs', 'action' => 'index')),
-	);
+	public $crumbs = [
+		['name' => 'プラグイン管理', 'url' => ['plugin' => '', 'controller' => 'plugins', 'action' => 'index']],
+		['name' => 'メールGoogleRecaptcha', 'url' => ['plugin' => 'mail_google_recaptcha', 'controller' => 'mail_google_recaptcha_configs', 'action' => 'index']],
+	];
 
 	/**
 	 * SiteConfigに保存するキー名

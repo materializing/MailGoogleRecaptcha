@@ -14,9 +14,9 @@ class MailGoogleRecaptchaModelEventListener extends BcModelEventListener {
 	 *
 	 * @var array
 	 */
-	public $events = array(
+	public $events = [
 		'Mail.MailMessage.beforeValidate',
-	);
+	];
 
 	/**
 	 * Google reCAPTCHA で認証した際のエラー内容
