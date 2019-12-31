@@ -99,6 +99,11 @@ class MailGoogleRecaptchasController extends AppController {
 			$MailContentsModel = ClassRegistry::init('Mail.MailContent');
 			$MailContentsModel->unbindModel(['hasMany' => ['MailField']]);
 			$dataList = $MailContentsModel->find('all', [
+				'conditions' => [
+					'NOT' => [
+						'Content.deleted' => true,
+					],
+				],
 				'order' => 'MailContent.id ASC',
 			]);
 			$this->set(compact('dataList'));
