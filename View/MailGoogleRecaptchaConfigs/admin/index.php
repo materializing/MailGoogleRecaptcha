@@ -8,7 +8,7 @@
  * @license MIT
  */
 ?>
-<?php echo $this->BcForm->create('MailGoogleRecaptchaConfig', array('url' => array('action' => 'index'))); ?>
+<?php echo $this->BcForm->create('MailGoogleRecaptchaConfig', ['url' => ['action' => 'index']]); ?>
 
 <div class="section">
 	<table cellpadding="0" cellspacing="0" class="form-table">

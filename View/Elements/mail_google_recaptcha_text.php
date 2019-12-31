@@ -12,7 +12,7 @@
  * @link https://developers.google.com/recaptcha/docs/faq#id-like-to-hide-the-recaptcha-badge.-what-is-allowed
  */
 ?>
-<?php $this->BcBaser->css('MailGoogleRecaptcha.mail_google_recaptcha', array('inline' => false)); ?>
+<?php $this->BcBaser->css('MailGoogleRecaptcha.mail_google_recaptcha', ['inline' => false]); ?>
 <?php if ($MailGoogleRecaptcha['position'] === 'inline'): ?>
 <div class="mail-google-recaptcha-text">
 <p>
