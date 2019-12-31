@@ -10,31 +10,35 @@
 ?>
 <?php echo $this->BcForm->create('MailGoogleRecaptchaConfig', ['url' => ['action' => 'index']]); ?>
 
+<?php echo $this->BcFormTable->dispatchBefore() ?>
+
 <div class="section">
-	<table cellpadding="0" cellspacing="0" class="form-table">
+	<table cellpadding="0" cellspacing="0" class="form-table bca-form-table" id="FormTable">
 		<tr>
-			<th class="col-head">
+			<th class="col-head bca-form-table__label">
 				<?php echo $this->BcForm->label('MailGoogleRecaptchaConfig.site_key', 'サイトキー'); ?>
-				&nbsp;<span class="required">*</span>
+				&nbsp;<span class="bca-label required size-small" data-bca-label-type="required"><?php echo __d('baser', '必須') ?></span>
 			</th>
-			<td class="col-input">
-				<?php echo $this->BcForm->input('MailGoogleRecaptchaConfig.site_key', array(
-					'type' => 'text', 'size' => 255, 'maxlength' => 255, 'counter' => true, 'class' => 'full-width', 'autocomplete' => 'off',
+			<td class="col-input bca-form-table__input">
+				<?php echo $this->BcForm->input('MailGoogleRecaptchaConfig.site_key', [
+					'type' => 'text', 'size' => 60, 'maxlength' => 255, 'counter' => true,
+					'class' => 'full-width bca-textbox__input', 'autocomplete' => 'off',
 					'placeholder' => 'Google reCAPTCHAで取得したサイトキーを入力',
-				)); ?>
+				]); ?>
 				<?php echo $this->BcForm->error('MailGoogleRecaptchaConfig.site_key'); ?>
 			</td>
 		</tr>
 		<tr>
-			<th class="col-head">
+			<th class="col-head bca-form-table__label">
 				<?php echo $this->BcForm->label('MailGoogleRecaptchaConfig.secret_key', 'シークレットキー'); ?>
-				&nbsp;<span class="required">*</span>
+				&nbsp;<span class="bca-label required size-small" data-bca-label-type="required"><?php echo __d('baser', '必須') ?></span>
 			</th>
-			<td class="col-input">
-				<?php echo $this->BcForm->input('MailGoogleRecaptchaConfig.secret_key', array(
-					'type' => 'text', 'size' => 255, 'maxlength' => 255, 'counter' => true, 'class' => 'full-width', 'autocomplete' => 'off',
+			<td class="col-input bca-form-table__input">
+				<?php echo $this->BcForm->input('MailGoogleRecaptchaConfig.secret_key', [
+					'type' => 'text', 'size' => 60, 'maxlength' => 255, 'counter' => true,
+					'class' => 'full-width bca-textbox__input', 'autocomplete' => 'off',
 					'placeholder' => 'Google reCAPTCHAで取得したシークレットキーを入力',
-				)); ?>
+				]); ?>
 				<?php echo $this->BcForm->error('MailGoogleRecaptchaConfig.secret_key'); ?>
 			</td>
 		</tr>
@@ -42,21 +46,24 @@
 	</table>
 	<?php echo $this->BcFormTable->dispatchAfter() ?>
 
-	<div class="submit">
-		<?php echo $this->BcForm->submit('保　存', array('div' => false, 'class' => 'btn-red button', 'id' => 'BtnSave')); ?>
+	<div class="submit bca-actions">
+		<?php echo $this->BcForm->submit('保　存', [
+			'div' => false, 'class' => 'button bca-btn bca-actions__item',
+			'data-bca-btn-type' => 'save', 'data-bca-btn-size' => 'lg', 'data-bca-btn-width' => 'lg', 'id' => 'BtnSave',
+		]); ?>
 	</div>
 </div>
 
 <div class="section">
-	<table cellpadding="0" cellspacing="0" class="form-table">
+	<table cellpadding="0" cellspacing="0" class="form-table bca-form-table">
 		<tr>
-			<th class="col-head">
+			<th class="col-head bca-form-table__label">
 				初期化
 			</th>
-			<td class="col-input">
-				<?php echo $this->BcForm->input('MailGoogleRecaptchaConfig.do_initialize', array(
+			<td class="col-input bca-form-table__input">
+				<?php echo $this->BcForm->input('MailGoogleRecaptchaConfig.do_initialize', [
 					'type' => 'checkbox', 'label' => 'キー設定値を空にする',
-				)); ?>
+				]); ?>
 				<?php echo $this->BcForm->error('MailGoogleRecaptchaConfig.do_initialize'); ?>
 				<small style="color: #C00">※チェックして保存すると、設定済のキーが削除されます。</small>
 			</td>

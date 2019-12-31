@@ -9,6 +9,29 @@
  */
 App::uses('MailGoogleRecaptchaUtil', 'MailGoogleRecaptcha.Lib');
 /**
+ * システムナビ: admin-third
+ */
+$config['BcApp.adminNavigation'] = [
+	'Contents' => [
+		'GoogleRecaptcha' => [
+			'title' => 'メールGoogleRecaptcha',
+			'type' => 'plugin',
+			'icon' => 'bca-icon--setting',
+			'menus' => [
+				'GoogleRecaptchas' => [
+					'title' => 'フォーム別設定',
+					'url' => ['admin' => true, 'plugin' => 'mail_google_recaptcha', 'controller' => 'mail_google_recaptchas', 'action' => 'index'],
+				],
+				'GoogleRecaptchaConfigs' => [
+					'title' => '利用設定',
+					'url' => ['admin' => true, 'plugin' => 'mail_google_recaptcha', 'controller' => 'mail_google_recaptcha_configs', 'action' => 'index'],
+				],
+			]
+		],
+	],
+];
+
+/**
  * システムナビ
  */
 // $config['BcApp.adminNavi.mail_google_recaptcha'] = [
