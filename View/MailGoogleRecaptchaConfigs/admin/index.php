@@ -50,6 +50,7 @@
 		<?php echo $this->BcForm->submit('保　存', [
 			'div' => false, 'class' => 'button bca-btn bca-actions__item',
 			'data-bca-btn-type' => 'save', 'data-bca-btn-size' => 'lg', 'data-bca-btn-width' => 'lg', 'id' => 'BtnSave',
+			'onClick'=>"return confirm('本当に保存して良いですか？')",
 		]); ?>
 	</div>
 </div>
