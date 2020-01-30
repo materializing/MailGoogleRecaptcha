@@ -24,7 +24,7 @@ $this->BcListTable->setColumnNumber(3);
 					タイトル（URL）
 				</th>
 				<th class="bca-table-listup__thead-th">
-					利用状態&nbsp;/&nbsp;reCAPTCHAバッジの表示
+					利用状態&nbsp;/&nbsp;reCAPTCHAバッジの表示&nbsp;/&nbsp;判定スコア閾値
 				</th>
 				<th class="bca-table-listup__thead-th">
 					確認
@@ -55,6 +55,11 @@ $this->BcListTable->setColumnNumber(3);
 						'type' => 'select', 'options' => Configure::read('MailGoogleRecaptcha.position'), 'empty' => '表示する'
 					]); ?>
 					<?php echo $this->BcForm->error('MailGoogleRecaptcha.' . $mailContentId . '.position'); ?>
+					&nbsp;/&nbsp;
+					<?php echo $this->BcForm->input('MailGoogleRecaptcha.' . $mailContentId . '.score', [
+						'type' => 'select', 'options' => Configure::read('MailGoogleRecaptcha.score_list'), 'default' => '0.5'
+					]); ?>
+					<?php echo $this->BcForm->error('MailGoogleRecaptcha.' . $mailContentId . '.score'); ?>
 				</td>
 				<?php echo $this->BcListTable->dispatchShowRow($data) ?>
 				<td class="row-tools bca-table-listup__tbody-td bca-table-listup__tbody-td--actions">

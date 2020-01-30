@@ -67,7 +67,7 @@ class MailGoogleRecaptchaHelperEventListener extends BcHelperEventListener {
 			if (!in_array($View->request->params['Content']['entity_id'], array_keys($mailGoogleRecaptcha['MailGoogleRecaptcha']))) {
 				return;
 			}
-			$mailGoogleRecaptchaSetting = $mailGoogleRecaptcha['MailGoogleRecaptcha'][$View->request->params['Content']['entity_id']];
+			$mailGoogleRecaptchaSetting = MailGoogleRecaptchaUtil::getMailSetting($View->request->params['Content']['entity_id']);
 			if (!$mailGoogleRecaptchaSetting['use_recaptcha']) {
 				return;
 			}
@@ -129,7 +129,7 @@ class MailGoogleRecaptchaHelperEventListener extends BcHelperEventListener {
 			if (!in_array($View->request->params['Content']['entity_id'], array_keys($mailGoogleRecaptcha['MailGoogleRecaptcha']))) {
 				return;
 			}
-			$mailGoogleRecaptchaSetting = $mailGoogleRecaptcha['MailGoogleRecaptcha'][$View->request->params['Content']['entity_id']];
+			$mailGoogleRecaptchaSetting = MailGoogleRecaptchaUtil::getMailSetting($View->request->params['Content']['entity_id']);
 			if (!$mailGoogleRecaptchaSetting['use_recaptcha']) {
 				return;
 			}

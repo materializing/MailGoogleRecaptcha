@@ -50,4 +50,18 @@ class MailGoogleRecaptchaUtil {
 		return BcUtil::unserialize($data['SiteConfig']['value']);
 	}
 
+	/**
+	 * メールフォームコンテンツIDを元に、対象フォームの設定内容を取得する
+	 *
+	 * @param int $mailContentId
+	 * @return array
+	 */
+	public static function getMailSetting($mailContentId) {
+		$mailGoogleRecaptcha = self::getSettingList();
+		if (!empty($mailGoogleRecaptcha['MailGoogleRecaptcha'][$mailContentId])) {
+			return $mailGoogleRecaptcha['MailGoogleRecaptcha'][$mailContentId];
+		}
+		return [];
+	}
+
 }

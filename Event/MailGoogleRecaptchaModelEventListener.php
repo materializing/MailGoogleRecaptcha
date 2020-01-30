@@ -19,13 +19,6 @@ class MailGoogleRecaptchaModelEventListener extends BcModelEventListener {
 	];
 
 	/**
-	 * Google reCAPTCHA で認証した際のエラー内容
-	 *
-	 * @var Object
-	 */
-	private $recaptchaError = null;
-
-	/**
 	 * mailMessageBeforeValidate
 	 *
 	 * @param CakeEvent $event
@@ -47,16 +40,42 @@ class MailGoogleRecaptchaModelEventListener extends BcModelEventListener {
 		if (!in_array($Model->mailContent['MailContent']['id'], array_keys($mailGoogleRecaptcha['MailGoogleRecaptcha']))) {
 			return true;
 		}
-		if (!$mailGoogleRecaptcha['MailGoogleRecaptcha'][$Model->mailContent['MailContent']['id']]['use_recaptcha']) {
+
+		$mailGoogleRecaptchaSetting = MailGoogleRecaptchaUtil::getMailSetting($Model->mailContent['MailContent']['id']);
+		if (!$mailGoogleRecaptchaSetting) {
+			return true;
+		}
+
+		if (!$mailGoogleRecaptchaSetting['use_recaptcha']) {
 			return true;
 		}
 
 		if (!empty($Model->data['MailMessage']['mail_google_recaptcha_token'])) {
 			$token = $Model->data['MailMessage']['mail_google_recaptcha_token'];
-			if (!$this->validateReCaptcha($mailGoogleRecaptchaConfig, $token)) {
+			$result = $this->validateReCaptcha($mailGoogleRecaptchaConfig, $token);
+
+			if ($result['success']) {
+				// Google reCAPTCHA との認証成功時は、返ってきたスコア値を元に設定値と比較する
+				$score = isset($result['score']) ? floatval($result['score']) : null;
+				if ($score >= $mailGoogleRecaptchaSetting['score']) {
+					return true;
+				} else {
+					// 設定スコア値より低い場合はボットとみなしてエラーとする
+					CakeLog::write(LOG_MAIL_GOOGLE_RECAPTCHA, '[mailMailMessageBeforeValidate.validateReCaptcha]');
+					CakeLog::write(LOG_MAIL_GOOGLE_RECAPTCHA, print_r($mailGoogleRecaptchaSetting, true));
+					CakeLog::write(LOG_MAIL_GOOGLE_RECAPTCHA, print_r($result, true));
+					$Model->invalidate('mail_google_recaptcha_token', Configure::read('MailGoogleRecaptcha.message_at_spam_decision'));
+					// invalidate発生させておくとreturn falseは不要
+				}
+
+			} else {
+				// エラー時はGoogle reCAPTCHA で認証した際のエラー内容
+				CakeLog::write(LOG_MAIL_GOOGLE_RECAPTCHA, '[mailMailMessageBeforeValidate.validateReCaptcha]');
+				CakeLog::write(LOG_MAIL_GOOGLE_RECAPTCHA, print_r($result, true));
+
 				$configErrorCodeList = Configure::read('MailGoogleRecaptcha.error_code_list');
 				$errorList = [];
-				foreach ($this->recaptchaError as $key => $errorCode) {
+				foreach ($result as $key => $errorCode) {
 					if ($key === 'error-codes') {
 						$errorList = $errorCode;
 					}
@@ -101,16 +120,7 @@ class MailGoogleRecaptchaModelEventListener extends BcModelEventListener {
 		$response = curl_exec($ch);
 		curl_close($ch);
 
-		$result = json_decode($response);
-		if ($result->success) {
-			return true;
-		} else {
-			$this->recaptchaError = $result;
-			CakeLog::write(LOG_MAIL_GOOGLE_RECAPTCHA, '[mailMailMessageBeforeValidate.validateReCaptcha]');
-			CakeLog::write(LOG_MAIL_GOOGLE_RECAPTCHA, print_r($result, true));
-		}
-
-		return false;
+		return json_decode($response, true);
 	}
 
 }

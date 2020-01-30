@@ -91,4 +91,18 @@ $config['MailGoogleRecaptcha'] = [
 		// The response is no longer valid: either is too old or has been used previously.
 		'timeout-or-duplicate' => '時間経過により認証できませんでした。再度送信してください。',
 	],
+	'score_list' => [
+		'1.0' => '1.0（厳しい判定）',
+		'0.9' => '0.9',
+		'0.8' => '0.8',
+		'0.7' => '0.7',
+		'0.6' => '0.6',
+		'0.5' => '0.5（標準）',
+		'0.4' => '0.4',
+		'0.3' => '0.3',
+		'0.2' => '0.2',
+		'0.1' => '0.1',
+		'0.0' => '0.0（緩い判定）',
+	],
+	'message_at_spam_decision' => 'メッセージの送信に失敗しました。',
 ];
