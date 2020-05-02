@@ -59,6 +59,9 @@ class MailGoogleRecaptchaUtil {
 	public static function getMailSetting($mailContentId) {
 		$mailGoogleRecaptcha = self::getSettingList();
 		if (!empty($mailGoogleRecaptcha['MailGoogleRecaptcha'][$mailContentId])) {
+			if (empty($mailGoogleRecaptcha['MailGoogleRecaptcha'][$mailContentId]['message_at_spam_decision'])) {
+				$mailGoogleRecaptcha['MailGoogleRecaptcha'][$mailContentId]['message_at_spam_decision'] = Configure::read('MailGoogleRecaptcha.message_at_spam_decision');
+			}
 			return $mailGoogleRecaptcha['MailGoogleRecaptcha'][$mailContentId];
 		}
 		return [];

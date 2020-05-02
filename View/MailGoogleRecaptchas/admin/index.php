@@ -24,7 +24,7 @@ $this->BcListTable->setColumnNumber(3);
 					タイトル（URL）
 				</th>
 				<th class="bca-table-listup__thead-th">
-					利用状態&nbsp;/&nbsp;reCAPTCHAバッジの表示&nbsp;/&nbsp;判定スコア閾値
+					利用状態&nbsp;/&nbsp;reCAPTCHAバッジの表示&nbsp;/&nbsp;判定スコア閾値&nbsp;/&nbsp;スコアが閾値より低い場合に表示するエラーメッセージ
 				</th>
 				<th class="bca-table-listup__thead-th">
 					確認
@@ -45,6 +45,7 @@ $this->BcListTable->setColumnNumber(3);
 				</td>
 				<td class="col-head bca-table-listup__tbody-td">
 					<?php echo h($data['Content']['title']); ?>
+					<br>
 					（<?php echo h($data['Content']['url']); ?>）
 				</td>
 				<td class="col-head bca-table-listup__tbody-td">
@@ -60,6 +61,12 @@ $this->BcListTable->setColumnNumber(3);
 						'type' => 'select', 'options' => Configure::read('MailGoogleRecaptcha.score_list'), 'default' => '0.5'
 					]); ?>
 					<?php echo $this->BcForm->error('MailGoogleRecaptcha.' . $mailContentId . '.score'); ?>
+					<br>
+					<?php echo $this->BcForm->input('MailGoogleRecaptcha.' . $mailContentId . '.message_at_spam_decision', [
+						'type' => 'text', 'placeholder' => Configure::read('MailGoogleRecaptcha.message_at_spam_decision'),
+						'size' => 80, 'maxlength' => 255, 'counter' => true, 'style' => 'width: 82%;',
+					]); ?>
+					<?php echo $this->BcForm->error('MailGoogleRecaptcha.' . $mailContentId . '.message_at_spam_decision'); ?>
 				</td>
 				<?php echo $this->BcListTable->dispatchShowRow($data) ?>
 				<td class="row-tools bca-table-listup__tbody-td bca-table-listup__tbody-td--actions">

@@ -64,7 +64,7 @@ class MailGoogleRecaptchaModelEventListener extends BcModelEventListener {
 					CakeLog::write(LOG_MAIL_GOOGLE_RECAPTCHA, '[mailMailMessageBeforeValidate.validateReCaptcha]');
 					CakeLog::write(LOG_MAIL_GOOGLE_RECAPTCHA, print_r($mailGoogleRecaptchaSetting, true));
 					CakeLog::write(LOG_MAIL_GOOGLE_RECAPTCHA, print_r($result, true));
-					$Model->invalidate('mail_google_recaptcha_token', Configure::read('MailGoogleRecaptcha.message_at_spam_decision'));
+					$Model->invalidate('mail_google_recaptcha_token', $mailGoogleRecaptchaSetting['message_at_spam_decision']);
 					// invalidate発生させておくとreturn falseは不要
 				}
 
