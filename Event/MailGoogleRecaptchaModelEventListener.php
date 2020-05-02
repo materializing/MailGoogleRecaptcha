@@ -72,12 +72,17 @@ class MailGoogleRecaptchaModelEventListener extends BcModelEventListener {
 				// エラー時はGoogle reCAPTCHA で認証した際のエラー内容
 				CakeLog::write(LOG_MAIL_GOOGLE_RECAPTCHA, '[mailMailMessageBeforeValidate.validateReCaptcha]');
 				CakeLog::write(LOG_MAIL_GOOGLE_RECAPTCHA, print_r($result, true));
+				if (is_null($result)) {
+					CakeLog::write(LOG_MAIL_GOOGLE_RECAPTCHA, 'validateReCaptcha() 内、curl_exec の返り値に何もありません');
+				}
 
 				$configErrorCodeList = Configure::read('MailGoogleRecaptcha.error_code_list');
 				$errorList = [];
-				foreach ($result as $key => $errorCode) {
-					if ($key === 'error-codes') {
-						$errorList = $errorCode;
+				if (is_array($result)) {
+					foreach ($result as $key => $errorCode) {
+						if ($key === 'error-codes') {
+							$errorList = $errorCode;
+						}
 					}
 				}
 
@@ -115,6 +120,7 @@ class MailGoogleRecaptchaModelEventListener extends BcModelEventListener {
 				'secret' => $configData['MailGoogleRecaptchaConfig']['secret_key'],
 				'response' => $token
 			]),
+			CURLOPT_SSL_VERIFYPEER => false,
 		]);
 
 		$response = curl_exec($ch);
